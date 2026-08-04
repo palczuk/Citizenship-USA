@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Civics Ledger — Study for the 2025 U.S. Naturalization Test</title>
+<meta name="description" content="Study and quiz on all 128 official USCIS civics questions for the 2025 naturalization test, with a dynamic quiz sized like the real interview.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Public+Sans:wght@400;500;600;700&family=Spline+Sans+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+<div class="top-ribbon">
+  <div class="wrap">
+    <span><span class="stars">★★★</span> M-1778 (09/25) reference edition</span>
+    <span>128 questions · 12 of 20 to pass · uscis.gov/citizenship</span>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#" data-goto="study">
+      <span class="seal" aria-hidden="true"></span>
+      <span class="brand-text">
+        <span class="title">Civics Ledger</span>
+        <span class="subtitle">2025 Naturalization Test Prep</span>
+      </span>
+    </a>
+    <nav class="tabs" aria-label="Site sections">
+      <button data-view="study" class="active" type="button">Study</button>
+      <button data-view="quiz" type="button">Quiz</button>
+    </nav>
+  </div>
+</header>
+
+<section class="hero">
+  <div class="wrap hero-grid">
+    <div>
+      <div class="eyebrow">United States Citizenship &amp; Immigration Services</div>
+      <h1>Learn every answer the <em>interviewer</em> can ask.</h1>
+      <p class="lede">All 128 official 2025 civics questions, organized like the real study guide, plus a dynamic quiz sized the same way your actual interview is: up to 20 questions, 12 correct to pass — or the 65/20 shortlist if that applies to you.</p>
+      <div class="hero-actions">
+        <button class="btn btn-primary" data-goto="quiz" type="button">Start a quiz</button>
+        <button class="btn btn-ghost" data-goto="study" type="button">Browse all 128</button>
+      </div>
+    </div>
+    <div class="ledger-card" aria-hidden="true">
+      <div class="row"><span class="label">Total questions</span><span class="value">128</span></div>
+      <div class="row"><span class="label">Asked in interview</span><span class="value">up to 20</span></div>
+      <div class="row"><span class="label">Needed to pass</span><span class="value">12 / 20</span></div>
+      <div class="row"><span class="label">65/20 shortlist</span><span class="value">20 ★</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== STUDY VIEW ===================== -->
+<main id="view-study" class="wrap">
+  <h2 class="section-title">Study the ledger</h2>
+  <p class="section-desc">Search, filter to the 65/20 shortlist, and tap any question to reveal every accepted answer — exactly as USCIS lists them.</p>
+
+  <div class="study-controls">
+    <div class="search-box">
+      <input id="study-search" type="search" placeholder="Search a question or answer…" aria-label="Search questions">
+    </div>
+    <label class="chip-toggle" id="star-only-label">
+      <input type="checkbox" id="star-only-toggle">
+      ★ 65/20 shortlist only
+    </label>
+    <span id="study-count-label" style="font-family: var(--font-mono); font-size: 0.78rem; color: var(--slate-soft);"></span>
+  </div>
+
+  <div class="section-jump" id="section-jump"></div>
+
+  <div id="study-list"></div>
+</main>
+
+<!-- ===================== QUIZ VIEW ===================== -->
+<main id="view-quiz" class="wrap hidden">
+  <h2 class="section-title">Take a quiz</h2>
+  <p class="section-desc">Pick a format that matches your interview, or set a custom length — questions are drawn at random every time.</p>
+
+  <div id="quiz-setup" class="quiz-setup">
+    <div class="mode-grid">
+      <div class="mode-card" data-mode="standard">
+        <div class="mtitle">Standard interview</div>
+        <div class="mdesc">20 random questions from all 128. Need 12 correct (60%) to pass, same as the real test.</div>
+      </div>
+      <div class="mode-card" data-mode="six520">
+        <div class="mtitle">65/20 shortlist</div>
+        <div class="mdesc">10 random questions from the 20 starred questions. Need 6 correct (60%) to pass.</div>
+      </div>
+      <div class="mode-card" data-mode="custom">
+        <div class="mtitle">Custom length</div>
+        <div class="mdesc">Choose how many questions to drill. If you ask for fewer than 128, they're picked at random.</div>
+      </div>
+    </div>
+
+    <div class="count-row hidden" id="count-row">
+      <label for="count-slider">Questions</label>
+      <input type="range" id="count-slider" min="5" max="128" value="20" step="1">
+      <span class="count-value" id="count-value">20</span>
+    </div>
+
+    <fieldset style="border:none; padding:0; margin: 0 0 24px;">
+      <legend style="font-weight:600; font-size:0.9rem; margin-bottom:10px;">Answer style</legend>
+      <label class="chip-toggle on" style="margin-right:10px;">
+        <input type="radio" name="quiz-style" value="mc" checked> Multiple choice (auto-graded)
+      </label>
+      <label class="chip-toggle">
+        <input type="radio" name="quiz-style" value="recall"> Recall &amp; self-grade (like the real interview)
+      </label>
+    </fieldset>
+
+    <button class="btn btn-primary" id="start-quiz-btn" type="button">Begin quiz →</button>
+  </div>
+
+  <div id="quiz-play" class="hidden">
+    <div class="quiz-hud">
+      <div class="hud-progress">
+        <div class="bar-track"><div class="bar-fill" id="hud-fill"></div></div>
+        <div class="bar-label" id="hud-label">Question 1 of 20</div>
+      </div>
+      <div class="hud-tally">
+        <span class="tally-pill tally-correct" id="tally-correct">✓ 0</span>
+        <span class="tally-pill tally-wrong" id="tally-wrong">✗ 0</span>
+      </div>
+      <button class="btn btn-ghost" id="quit-quiz-btn" type="button" style="padding:8px 14px; font-size:0.8rem;">End quiz</button>
+    </div>
+    <div class="question-card" id="question-card"></div>
+  </div>
+
+  <div id="quiz-results" class="hidden"></div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    Questions and answers transcribed from USCIS Form M-1778 (09/25), <em>128 Civics Questions and Answers (2025 version)</em>. Names for offices held "now" (President, Vice President, Speaker of the House, Chief Justice) reflect officeholders as of August 2026 — always confirm the current answer at <a href="https://www.uscis.gov/citizenship/testupdates" target="_blank" rel="noopener">uscis.gov/citizenship/testupdates</a> before your interview. This is an independent study tool and is not affiliated with USCIS or the U.S. government.
+  </div>
+</footer>
+
+<script src="js/data.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
